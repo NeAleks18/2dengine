@@ -1,4 +1,8 @@
 #pragma once
+#ifdef __linux
+	#error "This library for Windows OS"
+#else
+
 #include<Windows.h>
 #include<cstdlib>
 /*
@@ -82,3 +86,5 @@ public:
 #else
 #error "This library for Windows OS"
 #endif 
+
+#endif
