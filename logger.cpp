@@ -4,12 +4,12 @@
 
 #ifdef __linux__
 // Код для Linux
+const std::string FILENAME ="logs.log";
 #else
 #include "colorswin.h"
 Colors color;
-#endif
-
 const std::string FILENAME = ".log";
+#endif
 
 void Logger::Log(const std::string& message) {
 #ifdef __linux__
@@ -62,7 +62,6 @@ void Logger::SaveToFile(const std::string& message) {
         time_t currentTime = time(nullptr);
         std::string date = std::ctime(&currentTime);
         date.pop_back(); // Remove newline character
-
         outputFile << date << " " << message << std::endl;
 
         outputFile.close();
