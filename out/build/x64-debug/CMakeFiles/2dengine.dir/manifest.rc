@@ -1,0 +1,2 @@
+#pragma code_page(65001)
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "F:/Projects/Other/2dengine/out/build/x64-debug/CMakeFiles/2dengine.dir/embed.manifest"
