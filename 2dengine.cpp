@@ -2,9 +2,6 @@
 //
 
 #include "2dengine.h"
-#include <fstream>
-
-using namespace std;
 #include "logger.h"
 
 
@@ -12,9 +9,9 @@ int main() {
 
     Logger logger; logger.ClearFromFile();
 
-    logger.Log("This is a log message");
-    logger.Error("This is an error message");
-    logger.Warning("This is a warning message");
+    logger.Log(0, "This is a log message");
+    logger.Log(1, "This is a warning message");
+    logger.Log(2, "This is a error message");
 
     return 0;
 }

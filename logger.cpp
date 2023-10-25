@@ -3,58 +3,20 @@
 #include <ctime>
 
 #ifdef __linux__
-// Код для Linux
+// Code for linux
 const std::string FILENAME ="logs.log";
 #else
-#include "colorswin.h"
-Colors color;
 const std::string FILENAME = ".log";
 #endif
+const std::string PREFIXs[] = {"[Log] ", "[Warning] ", "[Error] "};
+const std::string COLORS[] = { "\x1B[37m", "\x1B[33m", "\x1B[31m" };
 
-void Logger::Log(const std::string& message) {
-#ifdef __linux__
-    // Код для Linux
-#else
-    color.set_color(CL_WHITE);
-#endif
-
-    std::cout << "[Log] " << message << std::endl;
-    SaveToFile("[Log] " + message);
+void Logger::Log(const std::int8_t type, const std::string& message) {
+    
+    std::cout << COLORS[type] << PREFIXs[type] << message << COLORS[0] << std::endl;
+    SaveToFile(PREFIXs[type] + message);
 }
 
-void Logger::Error(const std::string& message) {
-#ifdef __linux__
-    // Код для Linux
-#else
-    color.set_color(CL_RED);
-#endif
-
-    std::cerr << "[Error] " << message << std::endl;
-    SaveToFile("[Error] " + message);
-
-#ifdef __linux__
-    // Код для Linux
-#else
-    color.set_color(CL_WHITE);
-#endif
-}
-
-void Logger::Warning(const std::string& message) {
-#ifdef __linux__
-    // Код для Linux
-#else
-    color.set_color(CL_YELLOW);
-#endif
-
-    std::cout << "[Warning] " << message << std::endl;
-    SaveToFile("[Warning] " + message);
-
-#ifdef __linux__
-    // Код для Linux
-#else
-    color.set_color(CL_WHITE);
-#endif
-}
 
 void Logger::SaveToFile(const std::string& message) {
     std::ofstream outputFile(FILENAME, std::ios::app);

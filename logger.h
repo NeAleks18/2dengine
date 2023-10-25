@@ -5,9 +5,7 @@
 
 class Logger {
 public:
-    void Log(const std::string& message);
-    void Error(const std::string& message);
-    void Warning(const std::string& message);
+    void Log(const std::int8_t type, const std::string& message);
     void SaveToFile(const std::string& message);
     void ClearFromFile();
 };
