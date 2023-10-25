@@ -4,15 +4,19 @@
 
 #ifdef __linux__
 // Code for linux
-const std::string FILENAME ="logs.log";
+const std::string FILENAME = "logs.log";
 #else
 const std::string FILENAME = ".log";
 #endif
-const std::string PREFIXs[] = {"[Log] ", "[Warning] ", "[Error] "};
+const std::string PREFIXs[] = { "[Log] ", "[Warning] ", "[Error] " };
 const std::string COLORS[] = { "\x1B[37m", "\x1B[33m", "\x1B[31m" };
 
 void Logger::Log(const std::int8_t type, const std::string& message) {
-    
+    if (type > 2) {
+        std::cout << COLORS[2] << PREFIXs[2] << "Unable to find type with numbering. Please refer to the documentation to solve this problem!" << COLORS[0] << std::endl;
+        SaveToFile(PREFIXs[2] + "Unable to find type with numbering. Please refer to the documentation to solve this problem!");
+        return;
+    }
     std::cout << COLORS[type] << PREFIXs[type] << message << COLORS[0] << std::endl;
     SaveToFile(PREFIXs[type] + message);
 }
